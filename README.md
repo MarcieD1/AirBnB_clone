@@ -1,9 +1,7 @@
 # AirBnB Clone Project
 ## Description
 
-This project aims to create an AirBnB clone, starting with a command interpreter in Python.
-
-## Command Interpreter
+This project aims to create an AirBnB clone, starting with a command interpreter in Python. This project will be a complete web application which will be done in stages which begins with the back-end console.
 
 ### How to Start
 To start the command interpreter, run the console.py script.
@@ -23,6 +21,7 @@ Organize your work using branches and pull requests on GitHub. This will help yo
 
 ### Repository
 Ensure that your GitHub repository is named "AirBnB_clone."
+
 ### File: README.md
 Once you've created these files, make sure to follow the guidelines for executable files, pycodestyle, documentation, and testing as outlined in the project requirements. You can move on to the next tasks based on this foundation.
 
