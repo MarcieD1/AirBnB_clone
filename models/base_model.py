@@ -47,10 +47,10 @@ class BaseModel:
         storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of _dict_"""
+        """returns a dictionary containing all keys/values of __dict__"""
 
-        my_dict = self._dict_.copy()
-        my_dict["_class"] = type(self).__name_
-        my_dict["created_at"] = my_dict["created_at"].isoformat()
-        my_dict["updated_at"] = my_dict["updated_at"].isoformat()
+        my_dict = self.__dict__.copy()
+        my_dict["__class__"] = type(self).__name__
+        my_dict["created_at"] = self.created_at.isoformat()
+        my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict

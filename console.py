@@ -88,8 +88,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Creates an instance.
-        """
+        """Creates an instance."""
         if line == "" or line is None:
             print("** class name missing **")
         elif line not in storage.classes():
@@ -97,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             b = storage.classes()[line]()
             b.save()
-            print(b.id)
+            print(b.to_dict()['id'])
 
     def do_show(self, line):
         """Prints the string representation of an instance.
