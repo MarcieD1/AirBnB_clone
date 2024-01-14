@@ -201,5 +201,5 @@ class TestUserToDict(unittest.TestCase):
             user.to_dict(None)
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     unittest.main()

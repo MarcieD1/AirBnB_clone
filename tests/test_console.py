@@ -1566,5 +1566,5 @@ class TestHBNBCommand_count(unittest.TestCase):
             self.assertEqual("1", output.getvalue().strip())
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     unittest.main()        
