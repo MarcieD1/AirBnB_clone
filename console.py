@@ -72,19 +72,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[key].save()
 
     def do_EOF(self, line):
-        """Handles End Of File character.
-        """
+        """Handles End Of File character."""
         print()
         return True
 
     def do_quit(self, line):
-        """Exits the program.
-        """
+        """Exits the program."""
         return True
 
     def emptyline(self):
-        """Doesn't do anything on ENTER.
-        """
+        """Doesn't do anything on ENTER."""
         pass
 
     def do_create(self, line):
@@ -99,8 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print(b.to_dict()['id'])
 
     def do_show(self, line):
-        """Prints the string representation of an instance.
-        """
+        """Prints the string representation of an instance."""
         if line == "" or line is None:
             print("** class name missing **")
         else:
@@ -117,8 +113,7 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key])
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id.
-        """
+        """Deletes an instance based on the class name and id."""
         if line == "" or line is None:
             print("** class name missing **")
         else:
@@ -136,8 +131,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_all(self, line):
-        """Prints all string representation of all instances.
-        """
+        """Prints all string representation of all instances."""
         if line != "":
             words = line.split(' ')
             if words[0] not in storage.classes():
@@ -151,8 +145,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_list)
 
     def do_count(self, line):
-        """Counts the instances of a class.
-        """
+        """Counts the instances of a class."""
         words = line.split(' ')
         if not words[0]:
             print("** class name missing **")
@@ -165,8 +158,7 @@ class HBNBCommand(cmd.Cmd):
             print(len(matches))
 
     def do_update(self, line):
-        """Updates an instance by adding or updating attribute.
-        """
+        """Updates an instance by adding or updating attribute."""
         if line == "" or line is None:
             print("** class name missing **")
             return
@@ -177,6 +169,7 @@ class HBNBCommand(cmd.Cmd):
         uid = match.group(2)
         attribute = match.group(3)
         value = match.group(4)
+
         if not match:
             print("** class name missing **")
         elif classname not in storage.classes():
@@ -203,10 +196,19 @@ class HBNBCommand(cmd.Cmd):
                 attributes = storage.attributes()[classname]
                 if attribute in attributes:
                     value = attributes[attribute](value)
+                    print("Instance dictionary after updating:", storage.all()[key].__dict__)
                 elif cast:
                     try:
                         value = cast(value)
                     except ValueError:
                         pass  # fine, stay a string then
-                setattr(storage.all()[key], attribute, value)
-                storage.all()[key]
+
+                # Check if the provided value is a dictionary
+                if isinstance(value, dict):
+                    # Iterate through the dictionary and update attributes
+                    for key, val in value.items():
+                        setattr(storage.all()[key], key, val)
+                else:
+                    setattr(storage.all()[key], attribute, value)
+
+                storage.all()[key].save()

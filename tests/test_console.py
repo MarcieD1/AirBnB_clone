@@ -1203,7 +1203,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create State")
             testId = output.getvalue().strip()
         testCmd = "update State {} attr_name 'attr_value'".format(testId)
-        self.assertFalse(HBNBCommand().onecmd(testCmd)
+        self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["State.{}".format(testId)]._dict_
         self.assertEqual("attr_value", test_dict["attr_name"])
 
@@ -1566,5 +1566,5 @@ class TestHBNBCommand_count(unittest.TestCase):
             self.assertEqual("1", output.getvalue().strip())
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     unittest.main()        
