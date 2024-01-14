@@ -40,11 +40,21 @@ class BaseModel:
         return "[{}] ({}) {}".\
             format(type(self)._name, self.id, self.__dict_)
 
+
+class Basemodel:
+    def __init__(self):
+        # Initialize attributes
+
     def save(self):
         """updates the public instance attribute updated_at"""
-
         self.updated_at = datetime.now()
         storage.save()
+
+
+class BaseModel:
+
+    def __init__(self):
+        self.created_at = datetime.now()
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__"""
