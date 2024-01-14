@@ -51,7 +51,7 @@ class FileStorage:
             return
         with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
             obj_dict = json.load(f)
-            obj_dict = {k: self.classes()[v["_class_"]](**v)
+            obj_dict = {k: self.classes()[v["__class__"]](**v)
                         for k, v in obj_dict.items()}
             # TODO: should this overwrite or insert?
             FileStorage.__objects = obj_dict
