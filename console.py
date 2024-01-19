@@ -131,7 +131,7 @@ Function: Prints the string representation of all instances
 4. <class name>.update(<id> <dictionary>) \
 Function: Updates the instance of the class
         '''
-        checks = re.search(r"^(\w+)\s([\S]+?)\s({.+?})$", line)
+        checks = re.search(r"^(\w+)\s([\S]+?)\s(\w+)\s\"(.+?)\"", line)
         if checks:
             # it is a dictionary
             class_name = checks.group(1)
